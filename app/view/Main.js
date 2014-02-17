@@ -1,49 +1,27 @@
 Ext.define('DoubleUp.view.Main', {
-    extend: 'Ext.tab.Panel',
-    xtype: 'main',
-    requires: [
-        'Ext.TitleBar',
-        'Ext.Video'
-    ],
+    extend: 'Ext.Container',
+    xtype: 'MainView',
     config: {
-        tabBarPosition: 'bottom',
-
+		cls: 'main',
+		itemId: 'mainView',
+		layout : {
+			type: 'vbox',
+			align: 'stretch'
+		},
         items: [
             {
-                title: 'Welcome',
-                iconCls: 'home',
-
-                styleHtmlContent: true,
-                scrollable: true,
-
-                items: {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: 'Welcome to Double Up!'
-                },
-
+                flex: 1,
                 html: [
-                    "Blah blah You've just generated a new Sencha Touch 2 project. What you're looking at right now is the ",
-                    "contents of <a target='_blank' href=\"app/view/Main.js\">app/view/Main.js</a> - edit that file ",
-                    "and refresh to change what's rendered here."
+                    "<h1>Double Up</h1>"
                 ].join("")
             },
             {
-                title: 'Get Started',
-                iconCls: 'action',
-
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Getting Started'
-                    },
-                    {
-                        xtype: 'video',
-                        url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-                        posterUrl: 'http://b.vimeocdn.com/ts/261/062/261062119_640.jpg'
-                    }
-                ]
+                xtype: 'button',
+                height: 150,
+                width: 300,
+                id: 'startGameButton',
+                //cls: 'double_up_button',
+                html: '<h2>Start Game</h2>'
             }
         ]
     }
