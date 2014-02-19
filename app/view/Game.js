@@ -2,43 +2,67 @@ Ext.define('DoubleUp.view.Game', {
     extend: 'Ext.Container',
     xtype: 'GameView',
     config: {
+		layout: {
+			type: 'vbox',
+			align: 'stretch'
+		},
         items: [
+            // Dealer's card
             {
-
                 xtype: 'container',
-
-
-
-                title: 'Welcome',
-                iconCls: 'home',
-
-                styleHtmlContent: true,
-                scrollable: true,
-
-                items: {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: 'GAME SCREEN'
+                flex: 1,
+                layout: {
+                    type: 'vbox',
+                    align: 'middle'
                 },
-
-                html: [
-                    "GAME SCREEN"
-                ].join("")
+                items: [
+                    { xtype : 'spacer' },
+                    {
+                        xtype : 'container',
+                        html: '<h3>dealer card</h3>'
+                    },
+                    { xtype : 'spacer' }
+                ]
             },
-            {
-                title: 'Get Started',
-                iconCls: 'action',
 
+            // Player's cards
+            {
+                xtype: 'container',
+                flex: 1,
+                layout: {
+                    type: 'vbox',
+                    align: 'middle'
+                },
+                items: [
+                    { xtype : 'spacer' },
+                    {
+                        xtype : 'container',
+                        html: '<h3>player\'s cards</h3>'
+                    },
+                    { xtype : 'spacer' }
+                ]
+            },
+
+            // Score and Deal button
+            // Player's cards
+            {
+                xtype: 'container',
+                height: 100,
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch'
+                },
                 items: [
                     {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Getting Started'
+                        width: 100,
+                        style: 'background: red;',
+                        xtype : 'container',
+                        html: '<h3>player\'s score</h3>'
                     },
                     {
-                        xtype: 'video',
-                        url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-                        posterUrl: 'http://b.vimeocdn.com/ts/261/062/261062119_640.jpg'
+                        flex: 1,
+                        xtype : 'container',
+                        html: '<h3>Deal button</h3>'
                     }
                 ]
             }

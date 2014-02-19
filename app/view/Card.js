@@ -18,7 +18,7 @@ Ext.define('DoubleUp.view.Card', {
      * Sets the card face to display
      * @param face The card face as a string, such as "6D", QH", etc. Leave blank to show the back of a card
      */
-    setFace: function(face) {
-        x;
-    }
+//    setFace: function(face) {
+//        x;
+//    }
 });

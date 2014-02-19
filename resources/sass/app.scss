@@ -1,3 +1,5 @@
+$page-bg-color: #0702c1;  // Override the default background color
+
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
@@ -6,5 +8,34 @@
 
 // Custom code goes here..
 
-// Examples of using the icon mixin:
-// @include icon('user');
+@include font-face('8-BIT WONDER', inline-font-files('../../../fonts/8-BIT WONDER.TTF', truetype));
+
+.x-button {
+  background: #FFE641;
+  border-top: 6px solid #ffffc2;
+  border-left:  6px solid #ffffc2;
+  border-bottom: 6px solid #71480a;
+  border-right: 6px solid #71480a;
+  border-radius: 0;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #fff;
+  font-family: '8-BIT WONDER';
+  margin: auto;
+}
+
+.x-button.x-button-pressing {
+  background: #FFE641;
+  border-top: 6px solid #71480a;
+  border-left:  6px solid #71480a;
+  border-bottom: 6px solid #ffffc2;
+  border-right: 6px solid #ffffc2;
+}
+
+.x-button.x-button-pressing .x-button-label {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}

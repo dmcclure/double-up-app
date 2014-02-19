@@ -19,7 +19,6 @@ Ext.define('DoubleUp.controller.Main', {
     startNewGame: function() {
         // Call the server to start a new game
 
-        alert('start game');
-        Ext.Viewport.setActiveItem({ xtype: 'GameView' }, this.slideLeftTransition);
+        Ext.Viewport.animateActiveItem({ xtype: 'GameView' }, {type:'slide'});
     }
 });

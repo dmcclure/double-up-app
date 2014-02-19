@@ -19,6 +19,10 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "DoubleUp.controller.Main": [],
+  "DoubleUp.view.Card": [],
+  "DoubleUp.view.Game": [],
+  "DoubleUp.view.GameOver": [],
   "DoubleUp.view.Main": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -641,8 +645,18 @@ Ext.ClassManager.addNameAlternateMappings({
   ]
 });
 Ext.ClassManager.addNameAliasMappings({
-  "DoubleUp.view.Main": [
+  "DoubleUp.controller.Main": [],
+  "DoubleUp.view.Card": [
+    "widget.card"
+  ],
+  "DoubleUp.view.Game": [
+    "widget.GameView"
+  ],
+  "DoubleUp.view.GameOver": [
     "widget.main"
+  ],
+  "DoubleUp.view.Main": [
+    "widget.MainView"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],

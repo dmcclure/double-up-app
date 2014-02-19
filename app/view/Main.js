@@ -2,26 +2,41 @@ Ext.define('DoubleUp.view.Main', {
     extend: 'Ext.Container',
     xtype: 'MainView',
     config: {
-		cls: 'main',
-		itemId: 'mainView',
-		layout : {
+		layout: {
 			type: 'vbox',
 			align: 'stretch'
 		},
         items: [
             {
+                xtype: 'container',
                 flex: 1,
-                html: [
-                    "<h1>Double Up</h1>"
-                ].join("")
+                layout: {
+                    type: 'vbox',
+                    align: 'middle'
+                },
+                items: [
+                    { xtype : 'spacer' },
+                    {
+                        xtype: 'image',
+                        src: 'resources/images/title.png',
+                        width: 300,
+                        height: 300
+                    },
+                    { xtype : 'spacer' }
+                ]
             },
             {
-                xtype: 'button',
+                xtype: 'container',
                 height: 150,
-                width: 300,
-                id: 'startGameButton',
-                //cls: 'double_up_button',
-                html: '<h2>Start Game</h2>'
+                items: [
+                    {
+                        xtype: 'button',
+                        height: 60,
+                        width: 200,
+                        id: 'startGameButton',
+                        html: '<h2>Start</h2>'
+                    }
+                ]
             }
         ]
     }
