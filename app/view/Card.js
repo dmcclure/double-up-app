@@ -1,17 +1,21 @@
 Ext.define('DoubleUp.view.Card', {
     extend: 'Ext.Container',
     xtype: 'card',
+
     config: {
-        itemId: 'card',
-        baseCls: 'card',
-        width: 124,  // TODO: Move these to the css file?
-        height: 181,
-        margin: 10,
-        data: {
-            face: 'AS'
-        },
-        cls: 'AS',
-        html: '<p>card<br>here</p>'
+        cmpCls: 'card',
+//        data: {
+//            face: 'AS'
+//        },
+//        cls: 'AS',
+        html: [
+            '<div class="card-container">',
+                '<div class="card-flipper">',
+                    '<div class="card-front"></div>',
+                    '<div class="card-back"></div>',
+                '</div>',
+            '</div>'
+        ].join('')
     }
 
     /**

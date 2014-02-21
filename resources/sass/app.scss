@@ -25,6 +25,7 @@ $page-bg-color: #0702c1;  // Override the default background color
   text-shadow: 0px 1px 0px #fff;
   font-family: '8-BIT WONDER';
   margin: auto;
+  padding-top: 4px;
 }
 
 .x-button.x-button-pressing {
@@ -63,7 +64,7 @@ h2 {
 h3 {
   color: #f33032;
   font-size: 14px;
-  //  Simulate a text outline:
+  // Simulate a text outline:
   text-shadow:
    -1px -1px 0 #FFE641,
     1px -1px 0 #FFE641,
@@ -77,9 +78,40 @@ h3 {
   text-align: center;
 }
 
-.blink { animation: blink 1s steps(5, start) infinite; }
-@keyframes blink {
-  to {
-    visibility: hidden;
-  }
+.card-container {
+  border: 2px solid red;
+  -webkit-perspective: 1000;
+}
+
+// TEMP
+.card-container:hover .card-flipper, .card-container.hover .card-flipper {
+  -webkit-transform: rotateY(180deg);
+}
+
+.card-container, .card-front, .card-back {
+  width: 124px;
+  height: 180px;
+}
+
+.card-flipper {
+  -webkit-transition: 0.6s; // Flip speed
+  -webkit-transform-style: preserve-3d;
+  position: relative;
+}
+
+.card-front, .card-back {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-front {
+  background: orange;
+  -webkit-transform: rotateY(180deg); // Initially hidden
+}
+
+.card-back {
+  background: yellow;
+  z-index: 2;
 }

@@ -22,7 +22,8 @@ Ext.define('DoubleUp.view.Game', {
                     },
                     {
                         flex: 1,
-                        html: '<h2>DEALER CARDS HERE</h2>'
+                        id: 'dealerCard',
+                        xtype: 'card'
                     },
                     { xtype : 'spacer' }
                 ]
@@ -62,7 +63,7 @@ Ext.define('DoubleUp.view.Game', {
                     {
                         itemId: 'status',
                         xtype : 'container',
-                        html: '<h2 class="blink">Starting game...</h2>'
+                        html: '<h2>Starting game...</h2>'
                     },
                     { xtype : 'spacer' }
                 ]
@@ -97,7 +98,7 @@ Ext.define('DoubleUp.view.Game', {
                                 html: 'Deal'
                             }
                         ]
-                    },
+                    }
                 ]
             }
         ]

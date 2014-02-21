@@ -31,8 +31,8 @@ Ext.define('DoubleUp.view.Main', {
                 items: [
                     {
                         xtype: 'button',
-                        height: 60,
-                        width: 200,
+                        height: 50,
+                        width: 160,
                         id: 'startGameButton',
                         html: 'Start'
                     }
