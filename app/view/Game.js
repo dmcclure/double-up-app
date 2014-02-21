@@ -13,11 +13,11 @@ Ext.define('DoubleUp.view.Game', {
                 flex: 2,
                 layout: {
                     type: 'vbox',
-                    align: 'middle'
+                    align: 'center',
+                    pack: 'start'
                 },
                 items: [
                     {
-                        height: 30,
                         html: '<h2>Dealer\'s card:</h2>'
                     },
                     {
@@ -44,7 +44,33 @@ Ext.define('DoubleUp.view.Game', {
                     },
                     {
                         flex: 1,
-                        html: '<h2>PLAYER CARDS HERE</h2>'
+                        xtype: 'container',
+                        width: '100%',
+                        layout: {
+                            type: 'hbox',
+                            pack: 'center',
+                            align: 'start'
+                        },
+                        items: [
+                            {
+                                flex: 1,
+                                id: 'playerCard0',
+                                xtype: 'card',
+                                cls: 'player-card'
+                            },
+                            {
+                                flex: 1,
+                                id: 'playerCard1',
+                                xtype: 'card',
+                                cls: 'player-card'
+                            },
+                            {
+                                flex: 1,
+                                id: 'playerCard2',
+                                xtype: 'card',
+                                cls: 'player-card'
+                            }
+                        ]
                     },
                     { xtype : 'spacer' }
                 ]
@@ -63,7 +89,8 @@ Ext.define('DoubleUp.view.Game', {
                     {
                         itemId: 'status',
                         xtype : 'container',
-                        html: '<h2>Starting game...</h2>'
+                        tpl: new Ext.Template('<h2>{status}</h2>'),
+                        data: { status: 'Starting game...' }
                     },
                     { xtype : 'spacer' }
                 ]
@@ -82,8 +109,9 @@ Ext.define('DoubleUp.view.Game', {
                     {
                         width: 110,
                         cls: 'score',
-                        tpl: new Ext.XTemplate('<h3>Score:</h3><h1>{balance}</h1>'),
-                        data: { balance: '16' }
+                        id: 'score',
+                        tpl: new Ext.Template('<h3>Score:</h3><h1>{score}</h1>'),
+                        data: { score: '' }
                     },
                     {
                         flex: 1,
@@ -95,7 +123,8 @@ Ext.define('DoubleUp.view.Game', {
                                 height: 50,
                                 width: 150,
                                 id: 'dealButton',
-                                html: 'Deal'
+                                html: 'Deal',
+                                hidden: true
                             }
                         ]
                     }
