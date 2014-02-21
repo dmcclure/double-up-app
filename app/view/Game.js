@@ -10,22 +10,46 @@ Ext.define('DoubleUp.view.Game', {
             // Dealer's card
             {
                 xtype: 'container',
-                flex: 1,
+                flex: 2,
                 layout: {
                     type: 'vbox',
                     align: 'middle'
                 },
                 items: [
-                    { xtype : 'spacer' },
                     {
-                        xtype : 'container',
-                        html: '<h3>dealer card</h3>'
+                        height: 30,
+                        html: '<h2>Dealer\'s card:</h2>'
+                    },
+                    {
+                        flex: 1,
+                        html: '<h2>DEALER CARDS HERE</h2>'
                     },
                     { xtype : 'spacer' }
                 ]
             },
 
             // Player's cards
+            {
+                xtype: 'container',
+                flex: 2,
+                layout: {
+                    type: 'vbox',
+                    align: 'middle'
+                },
+                items: [
+                    {
+                        height : 30,
+                        html: '<h2>Your cards:</h2>'
+                    },
+                    {
+                        flex: 1,
+                        html: '<h2>PLAYER CARDS HERE</h2>'
+                    },
+                    { xtype : 'spacer' }
+                ]
+            },
+
+            // Status text
             {
                 xtype: 'container',
                 flex: 1,
@@ -36,34 +60,44 @@ Ext.define('DoubleUp.view.Game', {
                 items: [
                     { xtype : 'spacer' },
                     {
+                        itemId: 'status',
                         xtype : 'container',
-                        html: '<h3>player\'s cards</h3>'
+                        html: '<h2 class="blink">Starting game...</h2>'
                     },
                     { xtype : 'spacer' }
                 ]
             },
 
             // Score and Deal button
-            // Player's cards
             {
                 xtype: 'container',
-                height: 100,
+                height: 70,
                 layout: {
                     type: 'hbox',
+                    pack: 'start',
                     align: 'stretch'
                 },
                 items: [
                     {
-                        width: 100,
-                        style: 'background: red;',
-                        xtype : 'container',
-                        html: '<h3>player\'s score</h3>'
+                        width: 110,
+                        cls: 'score',
+                        tpl: new Ext.XTemplate('<h3>Score:</h3><h1>{balance}</h1>'),
+                        data: { balance: '16' }
                     },
                     {
                         flex: 1,
-                        xtype : 'container',
-                        html: '<h3>Deal button</h3>'
-                    }
+                        xtype: 'container',
+                        cls: 'deal-button-container',
+                        items: [
+                            {
+                                xtype: 'button',
+                                height: 50,
+                                width: 150,
+                                id: 'dealButton',
+                                html: 'Deal'
+                            }
+                        ]
+                    },
                 ]
             }
         ]

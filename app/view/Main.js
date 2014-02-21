@@ -34,7 +34,7 @@ Ext.define('DoubleUp.view.Main', {
                         height: 60,
                         width: 200,
                         id: 'startGameButton',
-                        html: '<h2>Start</h2>'
+                        html: 'Start'
                     }
                 ]
             }

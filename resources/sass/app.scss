@@ -8,7 +8,8 @@ $page-bg-color: #0702c1;  // Override the default background color
 
 // Custom code goes here..
 
-@include font-face('8-BIT WONDER', inline-font-files('../../../fonts/8-BIT WONDER.TTF', truetype));
+@include font-face('8-BIT WONDER', inline-font-files('../../../fonts/8-Bit Wonder/8-BIT WONDER.TTF', truetype));
+@include font-face('PressStart2P', inline-font-files('../../../fonts/PressStart2P/PressStart2P.ttf', truetype));
 
 .x-button {
   background: #FFE641;
@@ -38,4 +39,47 @@ $page-bg-color: #0702c1;  // Override the default background color
   position: relative;
   top: 2px;
   left: 2px;
+}
+
+h1 {
+  padding-top: 20px;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 2px 2px 0px #000;
+  font-family: 'PressStart2P';
+  text-transform: uppercase;
+}
+
+h2 {
+  padding-top: 20px;
+  color: #fff;
+  font-size: 15px;
+  text-shadow: 2px 2px 0px #000;
+  font-family: 'PressStart2P';
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h3 {
+  color: #f33032;
+  font-size: 14px;
+  //  Simulate a text outline:
+  text-shadow:
+   -1px -1px 0 #FFE641,
+    1px -1px 0 #FFE641,
+    -1px 1px 0 #FFE641,
+     1px 1px 0 #FFE641;
+  font-family: 'PressStart2P';
+  text-transform: uppercase;
+}
+
+.score {
+  text-align: center;
+}
+
+.blink { animation: blink 1s steps(5, start) infinite; }
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
 }
