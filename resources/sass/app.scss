@@ -131,7 +131,6 @@ h3 {
   -moz-backface-visibility: hidden;
   position: absolute;
   top: 0;
-  left: -10px;  // This overcomes the slight offset introduced by the hbox layout
 }
 
 .card-front, .card-back {

@@ -2,7 +2,7 @@ Ext.define('DoubleUp.controller.Game', {
     extend: 'Ext.app.Controller',
 
     config: {
-        apiUrl: 'http://doubleup.localhost/v1/game',
+        apiUrl: 'http://m.doubleup.davemac.info/v1/game',
         game: null,  // This object stores the current game state
 
         refs: {
