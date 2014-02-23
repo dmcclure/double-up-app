@@ -9,14 +9,14 @@ The application interacts with a REST API to initialize and play the game.
 
 Some key files are:
 
-[controller/Game.js](https://github.com/dmcclure/double-upp-app/app/controller/Game.js)
+[controller/Game.js](https://github.com/dmcclure/double-up-app/blob/master/app/controller/Game.js)
 - This is the primary controller for the game. It controls the game's view and interacts with the REST API.
 
-[view/Game.js](https://github.com/dmcclure/double-upp-app/app/view/Game.js)
+[view/Game.js](https://github.com/dmcclure/double-up-app/blob/master/app/view/Game.js)
 - This is the primary view for the game. It describes the appearance of the main game screen.
 
-[view/Card.js](https://github.com/dmcclure/double-upp-app/app/view/Card.js)
+[view/Card.js](https://github.com/dmcclure/double-up-app/blob/master/app/view/Card.js)
 - This component is reused to display each of the dealer and player cards.
 
-[resources/sass/app.scss](https://github.com/dmcclure/double-upp-app/app/resources/sass/app.scss)
+[resources/sass/app.scss](https://github.com/dmcclure/double-up-app/blob/master/resources/sass/app.scss)
 - This SASS file contains the CSS styles and overrides for the application.
