@@ -18,11 +18,11 @@ Ext.define('DoubleUp.view.Game', {
                 },
                 items: [
                     {
-                        height : 20,
+                        flex: 1,
                         html: '<h2>Dealer\'s card:</h2>'
                     },
                     {
-                        flex: 1,
+                        flex: 8,
                         id: 'dealerCard',
                         xtype: 'card'
                     },
@@ -40,11 +40,11 @@ Ext.define('DoubleUp.view.Game', {
                 },
                 items: [
                     {
-                        height : 20,
+                        flex: 1,
                         html: '<h2>Your cards:</h2>'
                     },
                     {
-                        flex: 1,
+                        flex: 8,
                         xtype: 'container',
                         width: '100%',
                         layout: {
@@ -72,8 +72,7 @@ Ext.define('DoubleUp.view.Game', {
                                 cls: 'player-card'
                             }
                         ]
-                    },
-                    { xtype : 'spacer' }
+                    }
                 ]
             },
 
