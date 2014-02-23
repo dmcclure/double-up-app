@@ -35,7 +35,7 @@ Ext.define('DoubleUp.view.Card', {
             this.element.down('div.card-front').removeCls('card-face-' + this.face);
         }
         this.element.down('div.card-front').addCls('card-face-' + face);
-        this.face = 'card-face-' + face;
+        this.face = face;
     },
 
     flip: function() {
@@ -44,8 +44,5 @@ Ext.define('DoubleUp.view.Card', {
 
     reset: function() {
         this.element.down('div.card-flipper').removeCls('card-rotate');
-        // Remove the old face class
-        this.element.down('div.card-front').removeCls('card-face-' + this.face);
-        this.face = null;
     }
 });

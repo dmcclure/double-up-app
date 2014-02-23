@@ -18,6 +18,7 @@ Ext.define('DoubleUp.view.Game', {
                 },
                 items: [
                     {
+                        height : 20,
                         html: '<h2>Dealer\'s card:</h2>'
                     },
                     {
@@ -39,7 +40,7 @@ Ext.define('DoubleUp.view.Game', {
                 },
                 items: [
                     {
-                        height : 30,
+                        height : 20,
                         html: '<h2>Your cards:</h2>'
                     },
                     {
@@ -49,7 +50,7 @@ Ext.define('DoubleUp.view.Game', {
                         layout: {
                             type: 'hbox',
                             pack: 'center',
-                            align: 'start'
+                            align: 'middle'
                         },
                         items: [
                             {
@@ -85,7 +86,6 @@ Ext.define('DoubleUp.view.Game', {
                     align: 'middle'
                 },
                 items: [
-                    { xtype : 'spacer' },
                     {
                         itemId: 'status',
                         xtype : 'container',
@@ -107,7 +107,7 @@ Ext.define('DoubleUp.view.Game', {
                 },
                 items: [
                     {
-                        width: 110,
+                        width: 130,
                         cls: 'score',
                         id: 'score',
                         tpl: new Ext.Template('<h3>Score:</h3><h1>{score}</h1>'),
@@ -124,7 +124,7 @@ Ext.define('DoubleUp.view.Game', {
                                 width: 150,
                                 id: 'dealButton',
                                 html: 'Deal',
-                                hidden: true
+                                disabled: true
                             }
                         ]
                     }

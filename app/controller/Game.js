@@ -4,7 +4,6 @@ Ext.define('DoubleUp.controller.Game', {
     config: {
         apiUrl: 'http://doubleup.localhost/v1/game',
         game: null,  // This object stores the current game state
-        flipped: false,
 
         refs: {
             dealerCard: '#dealerCard',
@@ -16,9 +15,6 @@ Ext.define('DoubleUp.controller.Game', {
             status: '#status'
         },
         control: {
-//            dealerCard: {
-//                tap: 'flipDealerCard'
-//            },
             playerCard0: {
                 tap: 'playerCardSelected'
             },
@@ -31,61 +27,36 @@ Ext.define('DoubleUp.controller.Game', {
             dealButton: {
                 tap: 'startNewRound'
             }
-//            score: {
-//                initialize: 'startFirstGame'
-//            }
         },
         views: [
             'Game'
         ]
     },
 
-    startFirstGame: function() {
-        this.startNewGame();
-    },
-
     /**
-     * Called when we want to start a brand new game.
+     * Updates the view based on the contents of the this.game model
      */
-    startNewGame: function() {
-        // Fetch a brand new game from the server
-        var me = this;
-        Ext.Ajax.request({
-            url: this.getApiUrl(),
-            method: 'POST',
-            callback: function(options, success, response) {
-                console.log(response.responseText);
-                if(success) {
-                    me.setGame(Ext.create('DoubleUp.model.Game', JSON.parse(response.responseText)));
-                    me.updateGameView();
-                } else {
-                    Ext.Msg.alert('Oops, something went wrong. Sorry about that');
-                }
-            }
-        });
-    },
-
     updateGameView: function() {
         var game = this.getGame();
         this.getScore().setData({ score: game.get('balance') });
 
         if (game.get('roundInProgress')) {
-            this.getDealButton().hide();
+            this.getDealButton().disable();
             this.getDealerCard().setFace(game.get('dealerCard'));
             this.getDealerCard().flip();
             this.getStatus().setData({ status: 'Select a card...' });
         }
         else {  // The user just selected a card
-            if (game.get('balance') == 0) {
+            if (game.get('roundResult') == -1) {
                 this.getStatus().setData({ status: 'Sorry, you lose' });
-
-                // TODO: Do something so the user can start a new game
-
             }
-            else {
+            else if (game.get('roundResult') == 1) {
                 this.getStatus().setData({ status: 'You win!' });
             }
-            // TODO: Handle a push
+            else {
+                // It's a push
+                this.getStatus().setData({ status: 'Push!' });
+            }
 
             this.getPlayerCard0().setFace(game.get('playerCards')[0]);
             this.getPlayerCard1().setFace(game.get('playerCards')[1]);
@@ -111,44 +82,63 @@ Ext.define('DoubleUp.controller.Game', {
             var task = Ext.create('Ext.util.DelayedTask', function() {
                     remainingCards[0].flip();
                     remainingCards[1].flip();
-                    dealButton.show();
+                    dealButton.enable();
                  });
-            task.delay(2000);
+            task.delay(1500);
         }
 
     },
 
+    /**
+     * If no game is in progress then a brand new one will be started. If a game is currently in progress then a
+     * new game round will be created.
+     */
     startNewRound: function() {
+        // Disable the Deal button
+        this.getDealButton().disable();
+
         // Reset all the cards
         this.getDealerCard().reset();
         this.getPlayerCard0().reset();
         this.getPlayerCard1().reset();
         this.getPlayerCard2().reset();
 
+        // We wait a short time so the card reset animations complete
         var me = this;
-        Ext.Ajax.request({
-            url: this.getApiUrl() + '/' + me.getGame().getId() + '/round',
-            method: 'POST',
-            callback: function(options, success, response) {
-                console.log(response.responseText);
-                if(success) {
-                    me.setGame(Ext.create('DoubleUp.model.Game', JSON.parse(response.responseText)));
-                    me.updateGameView();
-                } else {
-                    Ext.Msg.alert('Oops, something went wrong. Sorry about that');
-                }
+        var newRoundTask = Ext.create('Ext.util.DelayedTask', function() {
+            // If the game is over, start a new one. Otherwise, create a new round
+            var url = me.getApiUrl();
+            if (me.getGame() && me.getGame().get('balance') > 0) {
+                url += '/' + me.getGame().getId() + '/round';
             }
+
+            Ext.Ajax.request({
+                url: url,
+                method: 'POST',
+                callback: function(options, success, response) {
+                    if(success) {
+                        me.setGame(Ext.create('DoubleUp.model.Game', JSON.parse(response.responseText)));
+                        me.updateGameView();
+                    } else {
+                        Ext.Msg.alert('Oops', 'Something went wrong. Sorry about that');
+                        Ext.Viewport.animateActiveItem({ xtype: 'MainView' }, {type:'slide'});
+                    }
+                }
+            });
         });
+        newRoundTask.delay(500);
     },
 
+    /**
+     * Called when the player selects one of their three cards. The card selected is sent to the server to play
+     * the round.
+     * @param card The card selected by the player
+     */
     playerCardSelected: function(card) {
         // Don't do anything if we're not in a round
         if (!this.getGame().get('roundInProgress')) {
             return;
         }
-
-        console.log('card');
-        console.log(card);
 
         // Send the card selected to the server
         var cardSelected = card.getId().slice(-1);
@@ -159,13 +149,12 @@ Ext.define('DoubleUp.controller.Game', {
             method: 'PUT',
             params: { cardSelected: cardSelected },
             callback: function(options, success, response) {
-                console.log('PUT callback');
-                console.log(response.responseText);
                 if(success) {
                     me.setGame(Ext.create('DoubleUp.model.Game', JSON.parse(response.responseText)));
                     me.updateGameView();
                 } else {
                     Ext.Msg.alert('Oops, something went wrong. Sorry about that');
+                    Ext.Viewport.animateActiveItem({ xtype: 'MainView' }, {type:'slide'});
                 }
             }
         });

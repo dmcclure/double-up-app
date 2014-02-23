@@ -11,7 +11,7 @@ $page-bg-color: #0702c1;  // Override the default background color
 @include font-face('8-BIT WONDER', inline-font-files('../../../fonts/8-Bit Wonder/8-BIT WONDER.TTF', truetype));
 @include font-face('PressStart2P', inline-font-files('../../../fonts/PressStart2P/PressStart2P.ttf', truetype));
 
-.x-button {
+.x-button, .x-button-action, .x-toolbar .x-button.x-button-action, .x-button.x-button-action {
   background: #FFE641;
   border-top: 6px solid #ffffc2;
   border-left:  6px solid #ffffc2;
@@ -28,6 +28,14 @@ $page-bg-color: #0702c1;  // Override the default background color
   padding-top: 4px;
 }
 
+.x-button.x-item-disabled {
+  background: #787878;
+  border-top: 6px solid #b9b9b9;
+  border-left:  6px solid #b9b9b9;
+  border-bottom: 6px solid #333333;
+  border-right: 6px solid #333333;
+}
+
 .x-button.x-button-pressing {
   background: #FFE641;
   border-top: 6px solid #71480a;
@@ -40,6 +48,21 @@ $page-bg-color: #0702c1;  // Override the default background color
   position: relative;
   top: 2px;
   left: 2px;
+}
+
+.x-msgbox {
+  border: 0.15em solid #FFE641;
+  border-radius: 0;
+  color: #fff;
+  font-size: 18px;
+//  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #000;
+  font-family: '8-BIT WONDER';
+}
+
+.x-msgbox-text {
+  font-size: 16px;
 }
 
 h1 {
@@ -108,7 +131,7 @@ h3 {
   -moz-backface-visibility: hidden;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -10px;  // This overcomes the slight offset introduced by the hbox layout
 }
 
 .card-front, .card-back {

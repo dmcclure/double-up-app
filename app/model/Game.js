@@ -6,8 +6,9 @@ Ext.define('DoubleUp.model.Game', {
             { name: 'dealerCard', type: 'string' },
             { name: 'balance', type: 'int' },
             { name: 'roundInProgress', type: 'boolean' },
+            { name: 'roundResult', type: 'int' },
             { name: 'playerCardSelected', type: 'int' },
-            { name: 'playerCards', type: 'auto' },
+            { name: 'playerCards', type: 'auto' }
         ]
     }
 });

@@ -53,6 +53,6 @@ Ext.define('DoubleUp.controller.Main', {
     },
 
     startNewGame: function() {
-        Ext.Viewport.animateActiveItem({ xtype: 'GameView' }, {type:'slide'}, function() { DoubleUp.app.getController('DoubleUp.controller.Game').startFirstGame(); });
+        Ext.Viewport.animateActiveItem({ xtype: 'GameView' }, {type:'slide'}, function() { DoubleUp.app.getController('DoubleUp.controller.Game').startNewRound(); });
     }
 });
